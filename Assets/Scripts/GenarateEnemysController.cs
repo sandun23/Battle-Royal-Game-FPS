@@ -26,6 +26,7 @@ public class GenarateEnemysController : MonoBehaviour
         {
             var xPosition = Random.Range(-20, 27);
             var zPosition = Random.Range(-10, 37);
+
            
 
             Instantiate(TheEnemy,new Vector3(xPosition, yPosition, zPosition),Quaternion.identity);
