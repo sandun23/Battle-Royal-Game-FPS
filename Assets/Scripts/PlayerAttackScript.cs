@@ -40,5 +40,19 @@ public class PlayerAttackScript : MonoBehaviour
     void Attack()
     {
         Ray ray = new Ray(BulletParticleSystem.transform.position, BulletParticleSystem.transform.forward);
+
+        float raycastLength = 100f;
+
+        if (Physics.Raycast(ray,out RaycastHit hit, raycastLength))
+        {
+            var playerhitScript = hit.collider.GetComponent<PlayerHealth>();
+
+            if(playerhitScript != null)
+            {
+                float reduceHealthBy = 10f;
+
+                playerhitScript.ReduceHealth(reduceHealthBy);
+            }
+        }
     }
 }
