@@ -140,6 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a51058dc13a42ed9b2e82d63bfb2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DirectionChangeInterval: 1
+  maxHeadingChange: 30
+  speed: 1
 --- !u!143 &1927340784312546243
 CharacterController:
   m_ObjectHideFlags: 0
@@ -260,6 +263,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5072620326956057684}
     m_Modifications:
+    - target: {fileID: 1395115790478581273, guid: 79f54ffe928fc41218bfe74b58080e1d, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395115790478581273, guid: 79f54ffe928fc41218bfe74b58080e1d, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395115790478581273, guid: 79f54ffe928fc41218bfe74b58080e1d, type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395115790478581273, guid: 79f54ffe928fc41218bfe74b58080e1d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1395115790478581274, guid: 79f54ffe928fc41218bfe74b58080e1d, type: 3}
       propertyPath: m_RootOrder
       value: 0

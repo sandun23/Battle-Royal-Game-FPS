@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
+    //Enemy Rotating
     IEnumerator NewHeading()
     {
         while (true)
@@ -72,6 +73,13 @@ public class EnemyMovement : MonoBehaviour
         var forward = transform.TransformDirection(Vector3.forward);
 
         controller.SimpleMove(forward * speed);
+
+        //SafeZone zone Player Die Function
+        if (this.transform.position.y < 0)
+        {
+            Destroy(this.gameObject);
+
+        }
 
 
     }

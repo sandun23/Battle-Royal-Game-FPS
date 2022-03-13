@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 namespace StarterAssets
@@ -98,6 +99,16 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+
+			//SafeZone zone Player Die Function
+			if(this.transform.position.y < -2)
+            {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+			}
+
+
 		}
 
 		private void LateUpdate()

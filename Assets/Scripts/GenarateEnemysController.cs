@@ -19,7 +19,7 @@ public class GenarateEnemysController : MonoBehaviour
     
     IEnumerator CreateEnemies()
     {
-        int numberOfEnemies = 10;
+        int numberOfEnemies = 1;
         float yPosition = 1.1f;
 
         while (enemyCreated < numberOfEnemies)
