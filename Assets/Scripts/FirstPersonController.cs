@@ -104,7 +104,7 @@ namespace StarterAssets
 			//SafeZone zone Player Die Function
 			if(this.transform.position.y < -2)
             {
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
 
 			}
 
