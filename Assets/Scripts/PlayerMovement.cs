@@ -6,17 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    private PlayerMovementsInput playerInput;
+
 
     CharacterController characterControllerPlayer;
 
     float speed = 3f;
 
-    float pitch = 0f;
-
     public Transform cameraTransform;
     // Start is called before the first frame update
+
     void Start()
     {
+       
 
         if (!IsLocalPlayer)
         {
@@ -29,11 +31,28 @@ public class PlayerMovement : NetworkBehaviour
         {
             characterControllerPlayer = this.GetComponent<CharacterController>();
 
-
+            playerInput = new PlayerMovementsInput();
+            playerInput.Enable();
         }
 
+    }
 
+    private void OnDisable()
+    {
+        playerInput.Disable();
+    }
 
+    private PlayerMovementsInput Controls
+    {
+        get
+        {
+            if(playerInput != null)
+            {
+                return playerInput;
+            }
+
+            return playerInput = new PlayerMovementsInput();
+        }
 
     }
 
@@ -41,62 +60,49 @@ public class PlayerMovement : NetworkBehaviour
     void Update()
     {
 
-        if(IsLocalPlayer){
+        if (IsLocalPlayer)
+        {
             MovePlayer();
 
-            Look();
+            Debug.Log("inside update");
 
-          //  Debug.Log("ss");
+            //SafeZone zone Player Die Function
+            if (this.transform.position.y < -2)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            }
+
+
         }
-       
 
 
-        //SafeZone zone Player Die Function
-        if (this.transform.position.y < -2)
+        void MovePlayer()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            //controller.Move(move * Time.deltaTime * playerSpeed);
+
+
+            Vector2 movementInput = playerInput.PlayerAction.Move.ReadValue<Vector2>();
+            Debug.Log(movementInput);
+            Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+
+
+
+            //move = Vector3.ClampMagnitude(move, 1f);
+
+            //move = transform.TransformDirection(move);
+
+            
+            characterControllerPlayer.Move(move * Time.deltaTime * speed);
+
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+            }
 
         }
 
-
-    }
-
-
-    void MovePlayer()
-    {
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-
-        move = Vector3.ClampMagnitude(move, 1f);
-
-        move = transform.TransformDirection(move);
-
-
-        characterControllerPlayer.SimpleMove(move * speed);
-
-    }
-
-    float Sensitivity = 3f;
-    float MinPitch = -45f;
-    float MaxPitch = 45f;
-
-    void Look()
-    {
-
-
-        float mouseX = Input.GetAxis("Mouse X") * Sensitivity;
-
-
-        //float mouseX = Input.GetAxis("Mouse Y") * Sensitivity;
-
-        transform.Rotate(0, mouseX, 0);
-
-        pitch -= Input.GetAxis("Mouse Y") * Sensitivity;
-
-        pitch = Mathf.Clamp(pitch, MinPitch, MaxPitch);
-
-        cameraTransform.localRotation = Quaternion.Euler(pitch, 0, 0);
 
     }
 }
