@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerAttackScript : NetworkBehaviour
 {
 
+    private PlayerMovementsInput playerInput;
 
     NetworkVariableBool attaking = new NetworkVariableBool(new NetworkVariableSettings
     {
@@ -22,12 +23,18 @@ public class PlayerAttackScript : NetworkBehaviour
 
     float AttackTimer = 0f;
 
-    private float FiringRate = 10f;
+    private float FiringRate = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        em.enabled = false;
+        if (IsLocalPlayer)
+        {
+
+
+            playerInput = new PlayerMovementsInput();
+            playerInput.Enable();
+        }
         em = BulletParticleSystem.emission;
     }
 
@@ -36,8 +43,11 @@ public class PlayerAttackScript : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            attaking.Value = Input.GetKeyDown("space");
 
+
+            attaking.Value = playerInput.PlayerAction.Shoot.triggered;
+
+            Debug.Log(attaking.Value);
             AttackTimer += Time.deltaTime;
 
             if (attaking.Value && AttackTimer >= 1f / FiringRate)

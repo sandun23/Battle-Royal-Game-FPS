@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : NetworkBehaviour
 {
     private PlayerMovementsInput playerInput;
+    public GameObject gameUI;
 
 
     CharacterController characterControllerPlayer;
@@ -18,7 +19,6 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-       
 
         if (!IsLocalPlayer)
         {
@@ -30,6 +30,7 @@ public class PlayerMovement : NetworkBehaviour
         else
         {
             characterControllerPlayer = this.GetComponent<CharacterController>();
+            gameUI.SetActive(true);
 
             playerInput = new PlayerMovementsInput();
             playerInput.Enable();
@@ -64,7 +65,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             MovePlayer();
 
-            Debug.Log("inside update");
+           // Debug.Log("inside update");
 
             //SafeZone zone Player Die Function
             if (this.transform.position.y < -2)
@@ -84,7 +85,7 @@ public class PlayerMovement : NetworkBehaviour
 
 
             Vector2 movementInput = playerInput.PlayerAction.Move.ReadValue<Vector2>();
-            Debug.Log(movementInput);
+           // Debug.Log(movementInput);
             Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
 
 

@@ -5,6 +5,8 @@ using MLAPI;
 
 public class StartManager : MonoBehaviour
 {
+  //  public GameObject gameUI;
+
 
     private void OnGUI()
     {
@@ -14,6 +16,7 @@ public class StartManager : MonoBehaviour
         {
 
             ShowStartButoons();
+           // gameUI.SetActive(false);//
 
         }
     
@@ -33,7 +36,7 @@ GUILayout.EndArea();
     static void ShowStartButoons()
     {
 
-        if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
+        if (GUILayout.Button("Join")) NetworkManager.Singleton.StartClient();
 
         if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
 

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerMovementsInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Mobile/PlayerMovementsInput.inputactions'
 
 using System;
 using System.Collections;
@@ -23,6 +23,14 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""2454223b-dda3-499b-b83a-634d63dba762"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""130a1f1e-2d0c-42e2-b90a-1615ed95d2a6"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -93,6 +101,17 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4d3ab8a-83f6-4e0a-aa9b-bd61ae280a3c"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -102,6 +121,7 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
         // PlayerAction
         m_PlayerAction = asset.FindActionMap("PlayerAction", throwIfNotFound: true);
         m_PlayerAction_Move = m_PlayerAction.FindAction("Move", throwIfNotFound: true);
+        m_PlayerAction_Shoot = m_PlayerAction.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -152,11 +172,13 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayerAction;
     private IPlayerActionActions m_PlayerActionActionsCallbackInterface;
     private readonly InputAction m_PlayerAction_Move;
+    private readonly InputAction m_PlayerAction_Shoot;
     public struct PlayerActionActions
     {
         private @PlayerMovementsInput m_Wrapper;
         public PlayerActionActions(@PlayerMovementsInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerAction_Move;
+        public InputAction @Shoot => m_Wrapper.m_PlayerAction_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -169,6 +191,9 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnMove;
+                @Shoot.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -176,6 +201,9 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -183,5 +211,6 @@ public class @PlayerMovementsInput : IInputActionCollection, IDisposable
     public interface IPlayerActionActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

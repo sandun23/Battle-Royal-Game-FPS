@@ -8,7 +8,6 @@ using MLAPI.NetworkVariable;
 public class StartPlayer : NetworkBehaviour
 {
 
-   
     public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
     {
         WritePermission = NetworkVariablePermission.ServerOnly,
@@ -17,7 +16,7 @@ public class StartPlayer : NetworkBehaviour
 
     });
 
-
+   
     public void Move()
     {
 
