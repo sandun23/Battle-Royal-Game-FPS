@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6788486192875987227}
   - component: {fileID: 198367778812969210}
   - component: {fileID: 617472144916700787}
+  - component: {fileID: 3416024085396760653}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2b727d9ec99e64ef38dc573ab06bb21a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,6 +231,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3416024085396760653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901241926491293819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e28d5bf50194d4d941086e33ba38d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamColorRenderer: {fileID: 5370869572894924878}
+  teamColors:
+  - {r: 0.19112444, g: 0, b: 1, a: 0}
+  - {r: 0.990566, g: 0, b: 0, a: 0}
 --- !u!1 &5571607024525233619
 GameObject:
   m_ObjectHideFlags: 0
