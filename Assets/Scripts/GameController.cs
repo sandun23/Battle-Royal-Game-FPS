@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using MLAPI;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : NetworkManager
 {
     int MinimumPlayers = 2;
     // Update is called once per frame

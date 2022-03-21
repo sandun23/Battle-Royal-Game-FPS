@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using MLAPI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MLAPI.NetworkVariable;
+using MLAPI.Messaging;
 
 public class PlayerMovement : NetworkBehaviour
 {
     private PlayerMovementsInput playerInput;
     public GameObject gameUI;
 
+    //NetworkVariableInt teamNo = new NetworkVariableInt();
 
     CharacterController characterControllerPlayer;
 
@@ -19,7 +22,7 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-
+        
         if (!IsLocalPlayer)
         {
 
